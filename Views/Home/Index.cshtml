@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="~/Content/bootstrap-fileupload.min.css" />
+<script type="text/javascript" src="~/Scripts/bootstrap-fileupload.min.js"></script>
+<script type="text/javascript">
+    /// <reference path="~/Scripts/jquery-1.9.0.js" />
+    /// <reference path="~/Scripts/jquery-1.9.0.intellisense.js" />
+    /// <reference path="~/Scripts/knockout-2.2.1.js" />
+    $(document).ready(function () {
+        $("#winWidth").attr({ "value": Math.min(Math.floor($(window).width() - 16), 1350) });
+    });
+</script>
+<style>
+    body {
+        background-color: goldenrod;
+    }
+    h1 {
+        color: #333;
+        font-size: 36pt;
+        text-rendering: initial;
+        text-align: center;
+        text-transform: fullwidth;
+        font-variant: small-caps;
+        font-weight:bold;
+        text-shadow: -.5px 2px 6px rgba(51,51,51,.6);
+        margin-left: .5em;
+        margin-bottom: .5em;
+    }
+    #mainFormWrapper {
+        padding:10px;
+        background-color: oldlace;
+        border-radius: 3px;
+        border: 1px solid darkgray;
+        box-shadow: black -.5px 2px 6px;
+    }
+    input, label, select, button, #transpTextTitle, #transpTextButtons {
+        width: 80%;
+        margin-left: 10%;
+        font-weight:bold;
+        font-size: 12pt;
+        display:block;
+        text-align:center;
+    }
+    input[type="number"], textarea {
+        width: -webkit-calc(80% - 15px);
+        width: -moz-calc(80% - 15px);
+        width: calc(80% - 15px);
+        margin-left: 10%;
+        text-align:left;
+    }
+    .uneditable-input {
+        width: -webkit-calc(80% - 167px) !important;
+        width: -moz-calc(80% - 167px) !important;
+        width: calc(80% - 167px) !important;
+        margin-left: 10% !important;
+    }
+
+    .uneditable-input, input, textarea, select {
+        background-color: aliceblue !important;
+    }
+
+        label[for^="transpText"], input[type="radio"] {
+            text-align: left;
+            margin: 10px 0;
+            width: initial;
+            display: inline;
+        }
+
+    input[type="radio"]  {
+        margin-left:10px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1>Selected Text Image</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span4 offset4" id="mainFormWrapper">
+            <form method="post" action="~/Home/Picture" enctype="multipart/form-data">
+                <label for="file">File:</label>
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                  <div class="input-append">
+                    <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i><span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span>
+                        <input id="file" type="file" name="file" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                  </div>
+                </div>
+                <input id="winWidth" name="winWidth" type="hidden" />
+                <label for="text">Text:</label>
+                <textarea id="text" name="text"></textarea>
+                <br />
+                <label for="opacity">Opacity:</label>
+                <input id="opacity" type="number" min="0" max="1" step=".01" name="opacity" value="1" />
+                <br />
+                <span id="transpTextTitle">Transparent Text:</span>
+                <div id="transpTextButtons">
+                    <input id="transpTextOn" type="radio" name="transpText" value="true" /><label for="transpTextOn">On</label>
+                    <input id="transpTextOff" type="radio" name="transpText" value="false" checked/><label for="transpTextOff">Off</label>
+                </div>
+                <br />
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
